@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0d3b66;
+    font-family: Arial, sans-serif;
+}
+
+.call-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #112f4c;
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+}
+
+.call-header {
+    background-color: #112f4c;
+    padding: 10px;
+}
+
+.call-body {
+    padding: 20px;
+    background-color: #ccc;
+
+}
+
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+}
+
+.username {
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.call-duration {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #bbb;
+}
+
+.call-footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: #0d3b66;
+    padding: 10px;
+}
+
+.call-button {
+    width: 50px;
+    height: 50px;
+    background-color: #1c4966;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.call-button.end {
+    background-image: url('icons/end.png'); /* Add your end call icon path */
+    background-color: #d9534f;
+}
+
+@media (max-width: 500px) {
+    .call-container {
+        width: 90%;
+    }
+}
