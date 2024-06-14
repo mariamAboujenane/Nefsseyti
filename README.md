@@ -41,19 +41,27 @@ python app.py
 5. **Open your browser and go to `http://localhost:3000` to interact with the chatbot.**
 
 ## Usage
-### Home Page
+### Chatbot Page
 Navigate to the home page where you can interact with the mental health chatbot in Darija.
 
+![image](https://github.com/mariamAboujenane/Nefsseyti/assets/106840796/7c63da5c-0dd1-44c1-9a0e-21023439f541)
+
+![image](https://github.com/mariamAboujenane/Nefsseyti/assets/106840796/b2349d4b-ee52-4e41-878a-02622d6346a3)
 
 ### Audio Call
 Go to the `/audiocaa` route to have an audio call with the bot.
-
-**Route:** `/audiocall`
+![image](https://github.com/mariamAboujenane/Nefsseyti/assets/106840796/1958b2db-d99d-4f68-b76f-a625021189a8)
+![image](https://github.com/mariamAboujenane/Nefsseyti/assets/106840796/9e9dbdcb-7b35-474a-86b4-1ffe2ec1b5b6)
 
 ### Recommendations
 Visit the `/recommendations` route to see recommended mental health professionals based on your situation.
 
-**Route:** `/recommendations`
+![image](https://github.com/mariamAboujenane/Nefsseyti/assets/106840796/4de542fc-0fca-462a-8712-4afb9a6a94bc)
 
+## Video Demo 
+https://github.com/mariamAboujenane/Nefsseyti/assets/106840796/443e5e3f-e49a-4d87-b721-51904a5868a3
+
+## Contact
+For any inquiries or contributions, please contact Aboujenane Mariam at mariamaboujenane@gmail.com
 
 
