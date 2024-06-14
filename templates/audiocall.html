@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-color: #E7F5FE; /* Match the background color from the image */
+  font-family: Arial, sans-serif;
+  font-size: medium;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  margin-top: 0px;
+}
+
+.header img {
+  width: 30%; /* Adjust size as necessary */
+  height: 30%;
+}
+
+.header .title {
+  font-size: 40px; /* Adjust size as necessary */
+  font-weight: bold;
+}
+
+.header .close {
+  font-size: 18px; /* Adjust size as necessary */
+  cursor: pointer;
+}
+
+.test {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    width: 90%;
+}
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 50px;
+}
+
+.buttons img {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+#audioImage {
+        width: 80%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 80px;
+        padding-top: 250px;
+        padding-bottom: 250px;
+    }
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+  .header img {
+    width: 20px;
+    height: 20px;
+  }
+  .header .title {
+    font-size: 16px;
+  }
+  .header .close {
+    font-size: 16px;
+  }
+  .buttons img {
+    width: 100px;
+    height: 100px;
+  }
+  .buttons {
+    margin-top: 10px;
+  }
+  .test {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+.audio {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1000px;
+}
+
+#audioImage {
+        width: 80%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 50px;
+        padding-top: 1000px;
+    }
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <img src="{{ url_for('static', filename='logo.png') }}" class="logo" alt="Avatar">
+    <div class="close">&times;</div>
+  </div>
+    
+  <div class="test">
+    <div class="audio" id="audio" style="display: block;">
+      <img id="audioImage" src="{{ url_for('static', filename='wired-outline-188-microphone-recording (1).gif') }}" alt="Audio Wave">
+      <audio id="audioPlayer" controls style="display: none;"></audio>
+    </div>
+
+    <div class="buttons">
+      <img id="switchBtn" src="{{ url_for('static', filename='mute.png') }}" alt="Switch Icon" onclick="toggleIcon()">
+      <img id="hangupBtn" src="{{ url_for('static', filename='q.png') }}" alt="Hang up" onclick="location.href='{{ url_for('reservation') }}'">
+    </div>
+  </div>    
+</div>
+
+<script>
+  const microphoneImg = "{{ url_for('static', filename='microphone.png') }}";
+  const muteImg = "{{ url_for('static', filename='mute.png') }}";
+  const audioGif = "{{ url_for('static', filename='wired-outline-188-microphone-recording (1).gif') }}";
+  const avatarImg = "{{ url_for('static', filename='avatar.jpg') }}";
+
+  const userAudios = [
+    "{{ url_for('static', filename='user_audios/salam.opus') }}",
+    "{{ url_for('static', filename='user_audios/m9l9.opus') }}",
+    "{{ url_for('static', filename='user_audios/khdma.opus') }}",
+    "{{ url_for('static', filename='user_audios/bouhdi.opus') }}",
+    // Add more user audio files here
+  ];
+
+  const botAudios = [
+    "{{ url_for('static', filename='bot_audios/salam.wav') }}",
+    "{{ url_for('static', filename='bot_audios/achno m9al9ik.wav') }}",
+    "{{ url_for('static', filename='bot_audios/n3ass.wav') }}",
+    "{{ url_for('static', filename='bot_audios/wa7id.wav') }}",
+
+
+    // Add more bot audio files here
+  ];
+
+  let currentAudioIndex = 0;
+  let isUserTurn = true;
+
+  window.onload = function() {
+    playNextAudio();
+  }
+
+  function toggleIcon() {
+    var switchBtn = document.getElementById('switchBtn');
+    var audioDiv = document.getElementById('audio');
+    var audioImage = document.getElementById('audioImage');
+
+    if (switchBtn.src.endsWith('microphone.png')) {
+      switchBtn.src = muteImg;
+      audioDiv.style.display = 'block';
+      audioImage.src = audioGif;
+    } else if (switchBtn.src.endsWith('mute.png')) {
+      switchBtn.src = microphoneImg;
+      audioDiv.style.display = 'block';
+      audioImage.src = avatarImg;
+    }
+
+    playNextAudio();
+  }
+
+  function playNextAudio() {
+    var audioPlayer = document.getElementById('audioPlayer');
+
+    if (isUserTurn) {
+      audioPlayer.src = userAudios[currentAudioIndex];
+    } else {
+      audioPlayer.src = botAudios[currentAudioIndex];
+      currentAudioIndex++;
+    }
+
+    isUserTurn = !isUserTurn;
+    audioPlayer.play();
+  }
+</script>
+
+</body>
+</html>

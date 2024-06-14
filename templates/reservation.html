@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychiatrist Recommendations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #DEE3F1;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #E7F5FE;
+            ;
+            border-radius: 8px;
+        }
+        h1{
+            font-size: 25px !important;
+        }
+        .slider {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+        .slider img {
+            width: 100%;
+            height: auto;
+        }
+        .card {
+            background: #2F8CAA;
+            width:84%;
+            border-radius: 15px; /* Increased border-radius for rounded cards */
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .card img.profile {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #C0DAE0;
+        }
+        .card p {
+            line-height: 1.6;
+        }
+        .card .contact {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #C0DAE0;
+        }
+        .stars {
+            color: #FFD700;
+        }
+        .info {
+            flex: 1;
+        }
+        .stars-container {
+            display: flex;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+            .slider {
+                height: 200px;
+            }
+            .card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .card img.profile {
+                width: 80px;
+                height: 80px;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .card img.profile.phone {
+                order: -1;
+                margin-bottom: 10px;
+            }
+            .stars-container {
+                justify-content: flex-end;
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+    
+    <h1 style="color: #2F8CAA;">Recommended Psychiatrists</h1>
+    <div class="card">
+        <img src="data:image/jpeg;base64,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" class="profile phone" alt="Dr. Jane Smith">
+        <div class="info">
+            <h2>Dr. Aboujenane Mariam</h2>
+            <p><strong>Location:</strong> Casablanca Quartier des hôpitaux</p>
+            <p><strong>Specialty:</strong> Child and Adolescent Psychiatry</p>
+            <p><strong>Contact:</strong> 0653393453, Aboujenane.mariam@psy.com</p>
+        </div>
+        <div class="stars-container">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i> 
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://media.licdn.com/dms/image/D4E03AQFpeJu-E9TL_A/profile-displayphoto-shrink_200_200/0/1709340760453?e=2147483647&v=beta&t=8Z30pYY6g8vJLp-jc0LetBqwDo4adt7dva0gFXO_k3k" class="profile phone" alt="Dr. Jane Smith">
+        <div class="info">
+            <h2>Dr. Benachour Ayoub</h2>
+            <p><strong>Location:</strong> Fes Quartier Atlas</p>
+            <p><strong>Specialty:</strong> Child and Adolescent Psychiatry</p>
+            <p><strong>Contact:</strong> 0653393453, benachour.ayoub@psy.com</p>
+        </div>
+        <div class="stars-container">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i> 
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <img src="https://media.licdn.com/dms/image/D4E03AQFsSoa1mYtFeQ/profile-displayphoto-shrink_200_200/0/1700585596800?e=2147483647&v=beta&t=LTUL83WqIbWjaGxNnTT-RLKbhEt5ePHTT6t1jrJO6QU" class="profile phone" alt="Dr. Jane Smith">
+        <div class="info">
+            <h2>Dr. El boudali Rahhal</h2>
+            <p><strong>Location:</strong> Oujda Quartier alqods</p>
+            <p><strong>Specialty:</strong> Child and Adolescent Psychiatry</p>
+            <p><strong>Contact:</strong> 0653393453, elboudali.rahhal@psy.com</p>
+        </div>
+        <div class="stars-container">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i> 
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+</body>
+</html>
